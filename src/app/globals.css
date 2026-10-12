@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+/* Tokens de diseño: fuente de verdad en el paquete (design/tokens.css).
+   Solo la paleta de marca: sin colores de Tailwind por defecto. */
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-bg: #ffffff; /* Blanco: fondo principal */
+  --color-surface: #f4f4f2; /* Niebla: bloques, tarjetas, fondos de imagen */
+  --color-line: #e4e4e0; /* Piedra: bordes y divisores */
+  /* Gris: texto secundario. El paquete define #6E7174, que da 4.47:1 sobre
+     Niebla (#F4F4F2); un paso más oscuro llega a 4.53:1 (4.98:1 sobre blanco). */
+  --color-muted: #6d7073;
+  --color-fg: #1d1f21; /* Grafito: texto, logo, botón principal */
+  --color-accent: #3f5e78; /* Azul sereno: acento puntual (6.6:1 sobre blanco) */
+  --color-accent-soft: #e3eaf0;
+  --color-on-accent: #ffffff; /* texto sobre el azul (contador) */
+  --color-band: #1d1f21; /* Banda oscura (productoras) */
+
+  --font-sans:
+    var(--font-manrope), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  /* Sin interlineados propios: como en el prototipo, todo hereda 1.65 del body
+     (los títulos fijan el suyo en la capa base). */
+  --text-*: initial;
+  --text-xs: 12px; /* eyebrows, etiquetas */
+  --text-sm: 14px;
+  --text-small: 15px;
+  --text-body: 17px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-lead: clamp(18px, 1.6vw, 21px);
+  --text-h3: 24px;
+  --text-h2: clamp(34px, 4.6vw, 60px);
+  --text-display: clamp(44px, 7.2vw, 96px);
+
+  --radius-card: 4px;
+  --container-site: 1200px;
+
+  /* Los mismos saltos que el prototipo (≤720 y ≤980), en mobile-first. */
+  --breakpoint-*: initial;
+  --breakpoint-md: 721px;
+  --breakpoint-lg: 981px;
+}
+
+:root {
+  --gutter: clamp(16px, 4vw, 48px);
+  --section: clamp(96px, 12vw, 168px);
+}
+
+/* Tema oscuro: sigue al sistema, salvo que <html data-theme> lo fuerce. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #141516;
+    --color-surface: #1c1e20;
+    --color-line: #2c2f31;
+    --color-muted: #9a9da0;
+    --color-fg: #ececea;
+    --color-accent: #8fb0cb;
+    --color-accent-soft: #22303b;
+    --color-on-accent: #141516;
+    --color-band: #0e0f10;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: #141516;
+  --color-surface: #1c1e20;
+  --color-line: #2c2f31;
+  --color-muted: #9a9da0;
+  --color-fg: #ececea;
+  --color-accent: #8fb0cb;
+  --color-accent-soft: #22303b;
+  --color-on-accent: #141516;
+  --color-band: #0e0f10;
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Títulos en Light 300 con tracking negativo; nunca negrita. */
+  h1,
+  h2,
+  h3 {
+    font-weight: 300;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  h1 {
+    font-size: var(--text-display);
+  }
+  h2 {
+    font-size: var(--text-h2);
+  }
+  h3 {
+    font-size: var(--text-h3);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  button:not(:disabled),
+  summary {
+    cursor: pointer;
+  }
+  /* El panel de consulta es un <dialog> modal: el fondo no scrollea. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+}
+
+@utility eyebrow {
+  font-size: var(--text-xs);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+@utility lead {
+  font-size: var(--text-lead);
+  color: var(--color-muted);
+  max-width: 60ch;
+}
+
+/* Degradé de la hero: hacia abajo en mobile, desde la izquierda en desktop. */
+@utility hero-shade {
+  background: linear-gradient(
+    180deg,
+    rgb(20 21 22 / 0.15) 0%,
+    rgb(20 21 22 / 0.72) 70%
+  );
+  @media (width >= 721px) {
+    background:
+      linear-gradient(
+        90deg,
+        rgb(20 21 22 / 0.66) 0%,
+        rgb(20 21 22 / 0.38) 42%,
+        rgb(20 21 22 / 0) 72%
+      ),
+      linear-gradient(180deg, rgb(20 21 22 / 0) 45%, rgb(20 21 22 / 0.5) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

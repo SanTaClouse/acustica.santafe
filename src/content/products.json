@@ -1,0 +1,121 @@
+{
+  "_nota": "Catálogo inicial PROPUESTO. Medidas, espesores y textos son un punto de partida: editarlos acá y la web se actualiza. No se publican precios: el carrito arma un pedido de presupuesto por WhatsApp. Fotos: agregar \"imagen\" a un producto con la ruta del archivo en public/ (ej.: \"/productos/panel.jpg\") o un objeto por id de tela (ej.: {\"negro\": \"/productos/panel-negro.jpg\"}); la tarjeta muestra la foto en lugar de la ilustración.",
+  "telas": [
+    { "id": "negro", "nombre": "Negro", "hex": "#151617" },
+    { "id": "grafito", "nombre": "Grafito", "hex": "#3A3D40" },
+    { "id": "gris", "nombre": "Gris claro", "hex": "#B9BBBC" },
+    { "id": "arena", "nombre": "Arena", "hex": "#CFC5B4" },
+    { "id": "azul", "nombre": "Azul", "hex": "#3F5E78" },
+    { "id": "otro", "nombre": "Otro color (a elección)", "hex": "#E4E4E0" }
+  ],
+  "categorias": [
+    { "id": "absorcion", "nombre": "Absorción" },
+    { "id": "techo", "nombre": "Techo" },
+    { "id": "graves", "nombre": "Graves" },
+    { "id": "difusion", "nombre": "Difusión" },
+    { "id": "moviles", "nombre": "Móviles" }
+  ],
+  "productos": [
+    {
+      "id": "panel-absorbente",
+      "nombre": "Panel absorbente",
+      "categoria": "absorcion",
+      "forma": "rect",
+      "resumen": "El panel base de cualquier tratamiento: controla la reverberación y las reflexiones tempranas.",
+      "detalle": "Lana de roca de alta densidad, marco de pino y tela acústica a elección.",
+      "medidas": ["120 × 60 cm", "60 × 60 cm", "120 × 90 cm"],
+      "espesores": ["50 mm", "100 mm"],
+      "tela": true,
+      "fabricado": true
+    },
+    {
+      "id": "nube-techo",
+      "nombre": "Nube acústica de techo",
+      "categoria": "techo",
+      "forma": "nube",
+      "resumen": "Panel colgante que corta la reflexión del techo sobre el punto de escucha o de toma.",
+      "detalle": "Se cuelga con cables de acero a la altura que defina el proyecto.",
+      "medidas": ["120 × 60 cm", "120 × 120 cm"],
+      "espesores": ["100 mm"],
+      "tela": true,
+      "fabricado": true
+    },
+    {
+      "id": "trampa-graves",
+      "nombre": "Trampa de graves de esquina",
+      "categoria": "graves",
+      "forma": "trampa",
+      "resumen": "Absorbe la energía de baja frecuencia que se acumula en las esquinas.",
+      "detalle": "Sección triangular rellena de lana de roca. Se puede apilar de piso a techo.",
+      "medidas": ["Cateto 50 cm · alto 60 cm", "Cateto 50 cm · alto 120 cm"],
+      "espesores": [],
+      "tela": true,
+      "fabricado": true
+    },
+    {
+      "id": "panel-hexagonal",
+      "nombre": "Panel hexagonal",
+      "categoria": "absorcion",
+      "forma": "hex",
+      "resumen": "Absorción con una composición más decorativa para paredes a la vista y en cámara.",
+      "detalle": "Se combinan colores de tela para armar patrones.",
+      "medidas": ["Lado 30 cm", "Lado 50 cm"],
+      "espesores": ["50 mm"],
+      "tela": true,
+      "fabricado": true
+    },
+    {
+      "id": "difusor",
+      "nombre": "Difusor de madera",
+      "categoria": "difusion",
+      "forma": "difusor",
+      "resumen": "Reparte las reflexiones en lugar de absorberlas: la sala no queda «muerta».",
+      "detalle": "Difusor de residuo cuadrático en madera natural.",
+      "medidas": ["60 × 60 cm"],
+      "espesores": [],
+      "tela": false,
+      "fabricado": false
+    },
+    {
+      "id": "panel-movil",
+      "nombre": "Panel móvil con patas",
+      "categoria": "moviles",
+      "forma": "movil",
+      "resumen": "Pantalla absorbente que se mueve donde haga falta: separa fuentes y arma sets de toma.",
+      "detalle": "Doble cara de tela, patas de apoyo desmontables.",
+      "medidas": ["200 × 100 cm"],
+      "espesores": ["100 mm"],
+      "tela": true,
+      "fabricado": true
+    }
+  ],
+  "servicios": [
+    {
+      "id": "asesoramiento",
+      "nombre": "Asesoramiento acústico",
+      "etiqueta": "Diagnóstico",
+      "resumen": "Medimos tu espacio y te entregamos un informe técnico con recomendaciones.",
+      "incluye": [
+        "Evaluación presencial y mediciones acústicas",
+        "Volumen, geometría y tiempos de reverberación",
+        "Modos normales y frecuencia de Schroeder",
+        "Ruido de fondo y aislamiento, cuando corresponda",
+        "Recomendaciones priorizadas según el uso del espacio"
+      ]
+    },
+    {
+      "id": "llave-en-mano",
+      "nombre": "Proyecto llave en mano",
+      "etiqueta": "Proyecto completo",
+      "destacado": true,
+      "resumen": "Nos encargamos de todo: del diagnóstico a la medición final.",
+      "incluye": [
+        "Mediciones iniciales y objetivos",
+        "Diseño con render 3D del espacio",
+        "Presupuesto detallado y cronograma",
+        "Fabricación, instalación y coordinación de obra",
+        "Medición final y documentación de resultados"
+      ]
+    }
+  ]
+}
