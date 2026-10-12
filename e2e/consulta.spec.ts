@@ -68,6 +68,29 @@ test("arma una consulta de producto y la envía a WhatsApp con el formato acorda
   await expect(consulta(page).getByText("2 × Panel absorbente")).toBeVisible();
 });
 
+test("diseña un panel a medida, ve el precio y lo suma a la consulta", async ({
+  page,
+  isMobile,
+}) => {
+  await page.goto("/");
+  const seccion = page.locator("#a-medida");
+  await seccion.getByRole("button", { name: "Hexagonal" }).click();
+  await seccion.getByLabel("Ancho (cm)").fill("100");
+  await expect(seccion.getByText("$ 92.900")).toBeVisible();
+
+  await seccion.getByLabel("Ancho (cm)").fill("20");
+  await expect(
+    seccion.getByRole("button", { name: "Agregar a mi consulta" }),
+  ).toBeDisabled();
+  await seccion.getByLabel("Ancho (cm)").fill("100");
+
+  await seccion.getByRole("button", { name: "Agregar a mi consulta" }).click();
+  await abrirConsulta(page, isMobile);
+  expect(await waText(page)).toContain(
+    "• 1 × Panel a medida (Hexagonal · 100 cm de ancho · 50 mm · Tela grafito · Pared · $ 92.900 c/u estimado)",
+  );
+});
+
 test("la banda de productoras suma el proyecto, fija el tipo de espacio y abre el panel", async ({
   page,
 }) => {

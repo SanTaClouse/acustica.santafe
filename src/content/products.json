@@ -277,6 +277,36 @@
       "imagen": "/productos/kit-home-office.jpg"
     }
   ],
+  "cotizador": {
+    "_nota": "Tarifas del cotizador «Diseñá tu panel». Copia de la pestaña «Tarifas cotizador» del Sheet: si cambian allá, actualizarlas acá. kitTecho en null = se muestra «a confirmar». recargoTelaPedido es una fracción (0.1 = 10 %).",
+    "espesores": [
+      {
+        "nombre": "50 mm",
+        "precioM2": 120000
+      }
+    ],
+    "formas": [
+      {
+        "id": "rect",
+        "nombre": "Rectangular",
+        "recargo": 0
+      },
+      {
+        "id": "hex",
+        "nombre": "Hexagonal",
+        "recargo": 15000
+      },
+      {
+        "id": "tri",
+        "nombre": "Triangular",
+        "recargo": 15000
+      }
+    ],
+    "kitTecho": null,
+    "recargoTelaPedido": 0,
+    "medidaMin": 40,
+    "medidaMax": 300
+  },
   "servicios": [
     {
       "id": "asesoramiento",

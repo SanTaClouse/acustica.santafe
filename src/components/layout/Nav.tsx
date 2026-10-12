@@ -8,6 +8,7 @@ const LINKS = [
   ["#proceso", "Proceso"],
   ["#nosotros", "Nosotros"],
   ["#productos", "Productos"],
+  ["#a-medida", "A medida"],
   ["#contacto", "Contacto"],
 ] as const;
 
@@ -25,7 +26,7 @@ export function Nav() {
         {/* Los enlaces aparecen desde 981 px: por debajo no entran junto al logo y el botón. */}
         <nav
           aria-label="Secciones"
-          className="hidden gap-8 text-sm font-medium lg:flex"
+          className="hidden gap-5 text-sm font-medium whitespace-nowrap lg:flex min-[1200px]:gap-8"
         >
           {LINKS.map(([href, label]) => (
             <a key={href} href={href} className="text-muted hover:text-fg">

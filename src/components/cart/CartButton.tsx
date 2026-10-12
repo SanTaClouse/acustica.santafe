@@ -11,7 +11,11 @@ export function CartButton() {
       type="button"
       aria-haspopup="dialog"
       onClick={cart.open}
-      className={buttonClass({ variant: "ghost", size: "sm" })}
+      className={buttonClass({
+        variant: "ghost",
+        size: "sm",
+        className: "whitespace-nowrap",
+      })}
     >
       Mi consulta
       <span className="inline-grid h-5.5 min-w-5.5 place-items-center rounded-full bg-accent px-1.5 text-xs text-on-accent tabular-nums">

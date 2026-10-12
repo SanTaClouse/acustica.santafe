@@ -41,6 +41,31 @@ const productoSchema = z.object({
   imagen: z.union([texto, z.record(id, texto)]).optional(),
 });
 
+const precio = z.number().int().nonnegative();
+
+// Tarifas del cotizador «Diseñá tu panel» (copia de la pestaña del Sheet).
+const cotizadorSchema = z
+  .object({
+    _nota: z.string().optional(),
+    espesores: z.array(z.object({ nombre: texto, precioM2: precio })).min(1),
+    formas: z
+      .array(
+        z.object({
+          id: z.enum(["rect", "hex", "tri"]),
+          nombre: texto,
+          recargo: precio,
+        }),
+      )
+      .min(1),
+    kitTecho: precio.nullable(),
+    recargoTelaPedido: z.number().min(0).max(1),
+    medidaMin: z.number().int().positive(),
+    medidaMax: z.number().int().positive(),
+  })
+  .refine((c) => c.medidaMin < c.medidaMax, {
+    message: "cotizador: la medida mínima debe ser menor que la máxima",
+  });
+
 const servicioSchema = z.object({
   id,
   nombre: texto,
@@ -56,6 +81,7 @@ const catalogSchema = z
     telas: z.array(telaSchema).min(1),
     categorias: z.array(z.object({ id, nombre: texto })).min(1),
     productos: z.array(productoSchema).min(1),
+    cotizador: cotizadorSchema,
     servicios: z.array(servicioSchema),
   })
   .superRefine((c, ctx) => {
@@ -108,6 +134,7 @@ export type Tela = Catalog["telas"][number];
 export type Categoria = Catalog["categorias"][number];
 export type Producto = Catalog["productos"][number];
 export type Servicio = Catalog["servicios"][number];
+export type Cotizador = Catalog["cotizador"];
 
 const resultado = catalogSchema.safeParse(data);
 if (!resultado.success) {

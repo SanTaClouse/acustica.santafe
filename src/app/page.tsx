@@ -12,6 +12,7 @@ import { FloatingActions, Footer } from "@/components/layout/Footer";
 import { Nav } from "@/components/layout/Nav";
 import { About } from "@/components/sections/About";
 import { Faq, PREGUNTAS, StreamingBand } from "@/components/sections/Closing";
+import { Configurator } from "@/components/sections/Configurator";
 import { Hero, Promises } from "@/components/sections/Hero";
 import { Process } from "@/components/sections/Process";
 import { Products } from "@/components/sections/Products";
@@ -118,6 +119,7 @@ export default function Home() {
         <Process />
         <About />
         <Products />
+        <Configurator />
         <StreamingBand />
         <Faq />
       </main>
