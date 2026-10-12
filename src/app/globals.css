@@ -136,22 +136,22 @@
   max-width: 60ch;
 }
 
-/* Degradé de la hero: hacia abajo en mobile, desde la izquierda en desktop. */
+/* Velo crema de la hero (foto clara, texto grafito). En mobile funde el borde
+   de arriba de la foto con el fondo del texto; en desktop, desde la izquierda,
+   donde va el titular. */
 @utility hero-shade {
   background: linear-gradient(
     180deg,
-    rgb(20 21 22 / 0.15) 0%,
-    rgb(20 21 22 / 0.72) 70%
+    rgb(239 233 224 / 1) 0%,
+    rgb(239 233 224 / 0) 12%
   );
-  @media (width >= 721px) {
-    background:
-      linear-gradient(
-        90deg,
-        rgb(20 21 22 / 0.66) 0%,
-        rgb(20 21 22 / 0.38) 42%,
-        rgb(20 21 22 / 0) 72%
-      ),
-      linear-gradient(180deg, rgb(20 21 22 / 0) 45%, rgb(20 21 22 / 0.5) 100%);
+  @media (width >= 1024px) {
+    background: linear-gradient(
+      90deg,
+      rgb(243 238 230 / 0.85) 0%,
+      rgb(243 238 230 / 0.4) 38%,
+      rgb(243 238 230 / 0) 55%
+    );
   }
 }
 

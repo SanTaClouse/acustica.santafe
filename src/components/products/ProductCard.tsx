@@ -40,15 +40,33 @@ export function ProductCard({
     <article hidden={hidden} className="flex min-w-0 flex-col gap-3.5">
       <div className="relative grid aspect-[4/3] place-items-center overflow-hidden rounded-card bg-surface">
         {foto ? (
-          <Image
-            src={foto}
-            alt={
-              tela ? `${p.nombre}, tela ${tela.nombre.toLowerCase()}` : p.nombre
-            }
-            fill
-            sizes="(min-width: 981px) 368px, (min-width: 721px) 50vw, 100vw"
-            className="object-contain"
-          />
+          <>
+            <Image
+              src={foto}
+              alt={p.nombre}
+              fill
+              sizes="(min-width: 981px) 368px, (min-width: 721px) 50vw, 100vw"
+              className="object-cover"
+            />
+            {/* La foto muestra un color de ejemplo; la pastilla, la tela elegida. */}
+            {tela && (
+              <span
+                aria-hidden="true"
+                className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-white/90 py-1.5 pr-3 pl-1.5 text-xs font-medium text-[#1d1f21] backdrop-blur-sm"
+              >
+                <span
+                  className={cn(
+                    "size-5 rounded-full border border-black/10",
+                    tela.id === "otro" && ARCOIRIS,
+                  )}
+                  style={
+                    tela.id === "otro" ? undefined : { background: tela.hex }
+                  }
+                />
+                {tela.nombre}
+              </span>
+            )}
+          </>
         ) : (
           <ProductShape
             forma={p.forma}

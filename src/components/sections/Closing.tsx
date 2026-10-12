@@ -1,3 +1,5 @@
+import Image from "next/image";
+import foto from "@/assets/streaming-band.jpg";
 import { StreamingCta } from "@/components/cart/AddToCart";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHead } from "@/components/ui/Section";
@@ -9,6 +11,13 @@ export function StreamingBand() {
         <div>
           <div className="eyebrow text-white/60">Para productoras</div>
           <h2 className="mt-5">¿Vas a armar una sala de streaming?</h2>
+          <Image
+            src={foto}
+            alt="Estudio de productora audiovisual con paneles acústicos grafito, cámara y luz LED"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            placeholder="blur"
+            className="mt-10 aspect-[4/3] w-full rounded-card object-cover object-[88%_50%]"
+          />
         </div>
         <div>
           <p className="text-lg text-white/72">
@@ -37,7 +46,7 @@ export function StreamingBand() {
   );
 }
 
-const PREGUNTAS = [
+export const PREGUNTAS = [
   [
     "¿Trabajan fuera de Santa Fe?",
     "Sí, trabajamos en todo el país. Los productos se envían, y el asesoramiento y los proyectos se coordinan según el lugar y la escala de la obra.",

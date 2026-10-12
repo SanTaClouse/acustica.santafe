@@ -17,24 +17,28 @@ build (`ensureStatic = "navigation"` en el layout): no hay render por request.
 | `npm run typecheck` | TypeScript                                                                                |
 | `npm run lint`      | ESLint                                                                                    |
 | `npm run format`    | Prettier (ordena también las clases de Tailwind)                                          |
-| `npm run assets`    | Regenera íconos, imagen OG, logo y foto de "Quiénes somos" desde `scripts/source/`        |
+| `npm run assets`    | Regenera íconos, logo e imagen Open Graph desde `scripts/source/` y la foto de la hero    |
 
 La primera vez que se corren los E2E: `npx playwright install chromium`.
 
 ## Editar contenido
 
 - **Catálogo** (telas, categorías, productos, servicios): [`src/content/products.json`](src/content/products.json).
+  La lista completa de productos, con costos, precios y tarifas para completar, está en el Google Sheet
+  [Acústica Santa Fe · Catálogo de productos](https://docs.google.com/spreadsheets/d/1Q-HMT1wn9L1U2CrgQqtPSYlULLtK76XrM2ya5rmltZw/edit).
   Se valida en el build: si algo está mal (una categoría que no existe, un color mal escrito),
   el build falla con el detalle y el error nunca llega a producción.
 - **Fotos de productos:** agregar `"imagen": "/productos/archivo.jpg"` al producto (o un objeto por
-  id de tela) y el archivo en `public/productos/`. La tarjeta muestra la foto en lugar de la
-  ilustración. Ideal: el producto recortado con fondo transparente.
+  id de tela) y el archivo en `public/productos/` (JPG 4:3, ~960 px). La tarjeta muestra la foto en
+  lugar de la ilustración, con una pastilla del color de tela elegido.
+- **Imágenes:** las fotos de ambientes y productos son renders ilustrativos (Higgsfield), no obras de
+  clientes. Reemplazarlas por fotos reales a medida que haya.
 - **WhatsApp, Instagram, textos de SEO, tipos de espacio:** [`src/content/site.ts`](src/content/site.ts).
 - **Gráfico RT60:** valores en [`src/components/sections/Process.tsx`](src/components/sections/Process.tsx)
   (`MEDICION`). Con datos reales, pasar `ejemplo: false`.
-- **Foto de la hero / "Quiénes somos":** reemplazar `src/assets/hero.jpg` o `src/assets/nosotros.jpg`
-  con el mismo nombre. Si cambia la hero, correr `npm run assets` (la imagen OG se arma con ella) y
-  revisar `PANEL` en `scripts/generate-assets.mjs`.
+- **Foto de la hero / "Quiénes somos":** reemplazar `src/assets/hero.jpg` (panorámica 21:9, titular a
+  la izquierda), `src/assets/hero-mobile.jpg` (vertical) o `src/assets/nosotros.jpg` con el mismo
+  nombre. Si cambia la hero, correr `npm run assets`: la imagen OG usa su lado derecho.
 - Los textos de cada sección están en `src/components/sections/`.
 
 ## Estructura

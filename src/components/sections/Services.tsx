@@ -1,7 +1,22 @@
+import Image, { type StaticImageData } from "next/image";
+import asesoramiento from "@/assets/servicio-asesoramiento.jpg";
+import llaveEnMano from "@/assets/servicio-llave-en-mano.jpg";
 import { getCatalog } from "@/content/catalog";
 import { cn } from "@/lib/cn";
 import { AddServiceButton } from "@/components/cart/AddToCart";
 import { Section, SectionHead } from "@/components/ui/Section";
+
+// Renders ilustrativos, por id de servicio de products.json.
+const FOTOS: Record<string, { src: StaticImageData; alt: string }> = {
+  asesoramiento: {
+    src: asesoramiento,
+    alt: "Medición acústica con micrófono de medición y análisis en notebook",
+  },
+  "llave-en-mano": {
+    src: llaveEnMano,
+    alt: "Instalación nivelada de paneles acústicos grafito en un estudio",
+  },
+};
 
 export function Services() {
   const { servicios } = getCatalog();
@@ -21,6 +36,15 @@ export function Services() {
               s.destacado ? "border-surface bg-surface" : "border-line",
             )}
           >
+            {FOTOS[s.id] && (
+              <Image
+                src={FOTOS[s.id].src}
+                alt={FOTOS[s.id].alt}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                placeholder="blur"
+                className="aspect-[3/2] w-full rounded-card object-cover"
+              />
+            )}
             <div className="eyebrow">{s.etiqueta}</div>
             <h3 className="text-[32px] font-light tracking-[-0.02em]">
               {s.nombre}

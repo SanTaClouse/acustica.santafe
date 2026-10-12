@@ -55,6 +55,21 @@ export function ProductShape({
           />
         </>
       )}
+      {forma === "baffle" && (
+        <>
+          <g stroke="var(--color-muted)" strokeWidth="1.2">
+            {[90, 160, 230].map((x) => (
+              <line key={x} x1={x} y1="0" x2={x} y2="40" />
+            ))}
+          </g>
+          {[90, 160, 230].map((x) => (
+            <g key={x}>
+              <rect x={x - 16} y="40" width="32" height="130" fill={c} />
+              <rect x={x + 16} y="44" width="6" height="126" fill={e} />
+            </g>
+          ))}
+        </>
+      )}
       {forma === "trampa" && (
         <>
           <path
@@ -70,6 +85,38 @@ export function ProductShape({
           <polygon points={hexagono(200, 72, 52)} fill={e} />
           <polygon points={hexagono(155, 150, 52)} fill={c} />
           <polygon points={hexagono(245, 150, 52)} fill={c} />
+        </>
+      )}
+      {forma === "tri" && (
+        <>
+          {[0, 1, 2, 3].map((i) => (
+            <g key={i}>
+              <polygon
+                points={`${40 + i * 60},100 ${70 + i * 60},48 ${100 + i * 60},100`}
+                fill={i % 2 ? e : c}
+              />
+              <polygon
+                points={`${70 + i * 60},104 ${100 + i * 60},156 ${130 + i * 60},104`}
+                fill={i % 2 ? c : e}
+              />
+            </g>
+          ))}
+        </>
+      )}
+      {forma === "listones" && (
+        // Madera sobre fieltro negro: no lleva tela.
+        <>
+          <rect x="90" y="10" width="140" height="180" fill="#1d1f21" />
+          {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+            <rect
+              key={i}
+              x={94 + i * 19.5}
+              y="10"
+              width="13"
+              height="180"
+              fill={MADERA}
+            />
+          ))}
         </>
       )}
       {forma === "difusor" && (

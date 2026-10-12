@@ -1,9 +1,11 @@
 export const SITE_URL = "https://acusticasantafe.com";
 export const SITE_NAME = "Acústica Santa Fe";
+// Título y descripción para Google: el término que más se busca ("paneles
+// acústicos") va primero. ~60 y ~155 caracteres para que no se corten.
 export const SITE_TITLE =
-  "Acústica Santa Fe · Acondicionamiento acústico para estudios, streaming y comercios";
+  "Paneles acústicos a medida y acondicionamiento | Acústica Santa Fe";
 export const SITE_DESCRIPTION =
-  "Medimos, diseñamos y construimos soluciones acústicas para estudios de grabación, salas de streaming y comercios. Trabajamos en todo el país.";
+  "Fabricamos paneles acústicos a medida y acondicionamos estudios, salas de streaming, oficinas y comercios. Medición, diseño e instalación. Envíos a todo el país.";
 
 // El 9 después del 54 es obligatorio en wa.me para celulares argentinos.
 export const WHATSAPP = "5493424639480";

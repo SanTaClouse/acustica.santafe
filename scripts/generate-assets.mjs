@@ -1,8 +1,11 @@
-// Genera los assets derivados a partir de scripts/source/.
+// Genera los assets derivados a partir de scripts/source/ (marca, íconos y
+// fuentes Manrope para la imagen Open Graph).
 // Uso: npm run assets  (correr de nuevo si cambia alguna fuente)
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { ImageResponse } from "next/og.js";
+import { createElement } from "react";
 import sharp from "sharp";
 import { optimize } from "svgo";
 
@@ -31,44 +34,130 @@ await sharp(icon).resize(180, 180).png().toFile(out("src/app/apple-icon.png"));
 await sharp(icon).resize(192, 192).png().toFile(out("public/icon-192.png"));
 await sharp(icon).resize(512, 512).png().toFile(out("public/icon-512.png"));
 
-// Quiénes somos (provisoria): la mitad superior de la placa 03 es foto limpia.
-await sharp(src("quienes-somos-03.png"))
-  .extract({ left: 0, top: 0, width: 1080, height: 552 })
-  .jpeg({ quality: 84, mozjpeg: true })
-  .toFile(out("src/assets/nosotros.jpg"));
+// Las fotos de src/assets/ y public/productos/ son renders que vienen ya listos
+// para la web: no se generan acá.
 
-// Open Graph 1200×630: el logo apilado en blanco, centrado sobre el panel negro
-// de la hero, como una placa (regla del kit: blanco sobre zonas oscuras).
-// JPG < 300 KB para que WhatsApp muestre la vista previa.
-// Si cambia la foto de la hero, revisar PANEL (centro del panel en el recorte).
+// Open Graph 1200×630: titular en Manrope y logo a la izquierda, la foto de la
+// hero (paneles y mesa) a la derecha. Se arma con el ImageResponse de Next y se
+// pasa a JPG < 300 KB para que WhatsApp muestre la vista previa (el PNG pesa el
+// doble). WhatsApp recorta en cuadrado al centro: queda el titular y un panel.
 const W = 1200;
 const H = 630;
-const PANEL = { x: 617, y: 321 };
-const hero = await sharp(join(root, "src/assets/hero.jpg"))
-  .resize(W, H, { fit: "cover", position: "right" })
+const FOTO = 600;
+const h = (type, style, ...children) =>
+  createElement(type, { style }, ...children);
+const dataUri = (mime, buf) => `data:${mime};base64,${buf.toString("base64")}`;
+
+const fondo = await sharp(join(root, "src/assets/hero.jpg"))
+  .extract({ left: 1300, top: 0, width: 1260, height: 1097 })
+  .resize(FOTO, H, { fit: "cover" })
+  .jpeg({ quality: 90 })
   .toBuffer();
-const logoSvg = (
-  await readFile(src("logo-apilado-currentColor.svg"), "utf8")
-).replaceAll("currentColor", "#FFFFFF");
-const LOGO_W = 280;
-const logo = await sharp(Buffer.from(logoSvg), { density: 300 })
-  .resize({ width: LOGO_W })
-  .png()
-  .toBuffer();
-const { height: logoH } = await sharp(logo).metadata();
-await sharp(hero)
-  .composite([
+const logoOg = (
+  await readFile(src("logo-horizontal-currentColor.svg"), "utf8")
+).replaceAll("currentColor", "#1D1F21");
+
+const og = new ImageResponse(
+  h(
+    "div",
     {
-      input: logo,
-      left: Math.round(PANEL.x - LOGO_W / 2),
-      top: Math.round(PANEL.y - logoH / 2),
+      width: "100%",
+      height: "100%",
+      display: "flex",
+      background: "#EFE9E0",
+      color: "#1D1F21",
+      fontFamily: "Manrope",
     },
-  ])
-  .jpeg({ quality: 82, mozjpeg: true })
+    h(
+      "div",
+      {
+        width: W - FOTO,
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: "56px 0 52px 64px",
+      },
+      createElement("img", {
+        src: dataUri("image/svg+xml", Buffer.from(logoOg)),
+        width: 220,
+        height: 60,
+      }),
+      h(
+        "div",
+        { display: "flex", flexDirection: "column" },
+        h(
+          "div",
+          {
+            fontSize: 76,
+            fontWeight: 300,
+            lineHeight: 1.02,
+            letterSpacing: -2.5,
+          },
+          "Diseñamos cómo suena tu espacio.",
+        ),
+        h(
+          "div",
+          {
+            marginTop: 28,
+            fontSize: 27,
+            fontWeight: 300,
+            lineHeight: 1.35,
+            color: "#4A4D50",
+            maxWidth: 500,
+          },
+          "Paneles acústicos a medida para estudios, streaming y comercios.",
+        ),
+      ),
+      h(
+        "div",
+        {
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          fontSize: 22,
+          fontWeight: 600,
+        },
+        h("div", {
+          width: 12,
+          height: 12,
+          borderRadius: 6,
+          background: "#1F4E57",
+        }),
+        "acusticasantafe.com · Envíos a todo el país",
+      ),
+    ),
+    createElement("img", {
+      src: dataUri("image/jpeg", fondo),
+      width: FOTO,
+      height: H,
+    }),
+  ),
+  {
+    width: W,
+    height: H,
+    fonts: [
+      {
+        name: "Manrope",
+        data: await readFile(src("Manrope-Light.ttf")),
+        weight: 300,
+        style: "normal",
+      },
+      {
+        name: "Manrope",
+        data: await readFile(src("Manrope-SemiBold.ttf")),
+        weight: 600,
+        style: "normal",
+      },
+    ],
+  },
+);
+await sharp(Buffer.from(await og.arrayBuffer()))
+  .jpeg({ quality: 84, mozjpeg: true })
   .toFile(out("src/app/opengraph-image.jpg"));
 await writeFile(
   out("src/app/opengraph-image.alt.txt"),
-  "Acústica Santa Fe: logo sobre un panel acústico instalado en una pared blanca",
+  "Acústica Santa Fe: «Diseñamos cómo suena tu espacio». Paneles acústicos a medida, junto a una sala con paneles color petróleo",
 );
 
 console.log("Assets generados.");

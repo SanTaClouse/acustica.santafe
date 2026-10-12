@@ -1,46 +1,179 @@
 {
-  "_nota": "Catálogo inicial PROPUESTO. Medidas, espesores y textos son un punto de partida: editarlos acá y la web se actualiza. No se publican precios: el carrito arma un pedido de presupuesto por WhatsApp. Fotos: agregar \"imagen\" a un producto con la ruta del archivo en public/ (ej.: \"/productos/panel.jpg\") o un objeto por id de tela (ej.: {\"negro\": \"/productos/panel-negro.jpg\"}); la tarjeta muestra la foto en lugar de la ilustración.",
+  "_nota": "Catálogo de la web. La lista completa, con costos y precios para completar, está en el Google Sheet «Acústica Santa Fe · Catálogo de productos». No se publican precios: el carrito arma un pedido de presupuesto por WhatsApp. Fotos: \"imagen\" con la ruta del archivo en public/ (ej.: \"/productos/panel.jpg\") o un objeto por id de tela; la tarjeta muestra la foto en lugar de la ilustración.",
   "telas": [
-    { "id": "negro", "nombre": "Negro", "hex": "#151617" },
-    { "id": "grafito", "nombre": "Grafito", "hex": "#3A3D40" },
-    { "id": "gris", "nombre": "Gris claro", "hex": "#B9BBBC" },
-    { "id": "arena", "nombre": "Arena", "hex": "#CFC5B4" },
-    { "id": "azul", "nombre": "Azul", "hex": "#3F5E78" },
-    { "id": "otro", "nombre": "Otro color (a elección)", "hex": "#E4E4E0" }
+    {
+      "id": "negro",
+      "nombre": "Negro",
+      "hex": "#151617"
+    },
+    {
+      "id": "grafito",
+      "nombre": "Grafito",
+      "hex": "#3A3D40"
+    },
+    {
+      "id": "gris",
+      "nombre": "Gris claro",
+      "hex": "#B9BBBC"
+    },
+    {
+      "id": "arena",
+      "nombre": "Arena",
+      "hex": "#CFC5B4"
+    },
+    {
+      "id": "azul",
+      "nombre": "Azul",
+      "hex": "#3F5E78"
+    },
+    {
+      "id": "petroleo",
+      "nombre": "Petróleo",
+      "hex": "#1F4E57"
+    },
+    {
+      "id": "otro",
+      "nombre": "Otro color (a elección)",
+      "hex": "#E4E4E0"
+    }
   ],
   "categorias": [
-    { "id": "absorcion", "nombre": "Absorción" },
-    { "id": "techo", "nombre": "Techo" },
-    { "id": "graves", "nombre": "Graves" },
-    { "id": "difusion", "nombre": "Difusión" },
-    { "id": "moviles", "nombre": "Móviles" }
+    {
+      "id": "absorcion",
+      "nombre": "Absorción"
+    },
+    {
+      "id": "decorativos",
+      "nombre": "Decorativos"
+    },
+    {
+      "id": "techo",
+      "nombre": "Techo"
+    },
+    {
+      "id": "graves",
+      "nombre": "Graves"
+    },
+    {
+      "id": "difusion",
+      "nombre": "Difusión"
+    },
+    {
+      "id": "moviles",
+      "nombre": "Móviles"
+    },
+    {
+      "id": "kits",
+      "nombre": "Kits"
+    }
   ],
   "productos": [
     {
+      "fabricado": true,
       "id": "panel-absorbente",
       "nombre": "Panel absorbente",
       "categoria": "absorcion",
       "forma": "rect",
-      "resumen": "El panel base de cualquier tratamiento: controla la reverberación y las reflexiones tempranas.",
-      "detalle": "Lana de roca de alta densidad, marco de pino y tela acústica a elección.",
-      "medidas": ["120 × 60 cm", "60 × 60 cm", "120 × 90 cm"],
+      "resumen": "El panel base de cualquier tratamiento: controla el eco y las reflexiones. Se cuelga en vertical u horizontal.",
+      "detalle": "Marco de pino, lana de roca de alta densidad y tela acústica tensada. Trae ganchos para las dos orientaciones.",
+      "medidas": ["120 × 60 cm", "60 × 60 cm", "120 × 90 cm", "150 × 60 cm"],
       "espesores": ["50 mm", "100 mm"],
       "tela": true,
-      "fabricado": true
+      "imagen": "/productos/panel-absorbente.jpg"
     },
     {
+      "fabricado": true,
+      "id": "panel-slim",
+      "nombre": "Panel Slim",
+      "categoria": "absorcion",
+      "forma": "rect",
+      "resumen": "La versión liviana y económica: trabaja sobre la voz. Ideal para videollamadas y home office.",
+      "detalle": "25 mm de espesor, mismo marco de pino y tela acústica.",
+      "medidas": ["120 × 60 cm", "60 × 60 cm"],
+      "espesores": ["25 mm"],
+      "tela": true,
+      "imagen": "/productos/panel-slim.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "panel-hexagonal",
+      "nombre": "Panel hexagonal",
+      "categoria": "decorativos",
+      "forma": "hex",
+      "resumen": "Hexágonos para armar composiciones combinando colores. Absorben igual que el panel base y suman diseño en cámara.",
+      "detalle": "Pack de 6. Se combinan colores de tela para armar patrones.",
+      "medidas": ["Lado 30 cm · pack × 6", "Lado 50 cm · pack × 6"],
+      "espesores": ["50 mm"],
+      "tela": true,
+      "imagen": "/productos/panel-hexagonal.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "panel-triangular",
+      "nombre": "Panel triangular",
+      "categoria": "decorativos",
+      "forma": "tri",
+      "resumen": "Triángulos para guardas y composiciones geométricas. Se combinan entre sí y con los hexagonales.",
+      "detalle": "Pack de 6. Lado 50 cm.",
+      "medidas": ["Lado 50 cm · pack × 6"],
+      "espesores": ["50 mm"],
+      "tela": true,
+      "imagen": "/productos/panel-triangular.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "panel-listones",
+      "nombre": "Panel de listones",
+      "categoria": "decorativos",
+      "forma": "listones",
+      "resumen": "Listones de madera sobre fieltro acústico negro. Absorbe y suma calidez a livings, recepciones y locales.",
+      "detalle": "Listones de pino o MDF enchapado sobre fieltro acústico de PET.",
+      "medidas": ["240 × 60 cm", "120 × 60 cm"],
+      "espesores": [],
+      "tela": false,
+      "imagen": "/productos/panel-listones.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "panel-imagen",
+      "nombre": "Panel con imagen",
+      "categoria": "decorativos",
+      "forma": "rect",
+      "resumen": "La tela lleva impresa la foto o el diseño que elijas. Se cuelga como un cuadro y absorbe como un panel.",
+      "detalle": "Tela sublimada con tu imagen. Pasanos el archivo por WhatsApp y te confirmamos si la resolución alcanza.",
+      "medidas": ["120 × 60 cm", "150 × 90 cm", "A medida"],
+      "espesores": ["50 mm"],
+      "tela": false,
+      "imagen": "/productos/panel-imagen.jpg"
+    },
+    {
+      "fabricado": true,
       "id": "nube-techo",
       "nombre": "Nube acústica de techo",
       "categoria": "techo",
       "forma": "nube",
-      "resumen": "Panel colgante que corta la reflexión del techo sobre el punto de escucha o de toma.",
+      "resumen": "Panel colgante que corta la reflexión del techo sobre el punto de escucha, de toma o la mesa de reunión.",
       "detalle": "Se cuelga con cables de acero a la altura que defina el proyecto.",
       "medidas": ["120 × 60 cm", "120 × 120 cm"],
       "espesores": ["100 mm"],
       "tela": true,
-      "fabricado": true
+      "imagen": "/productos/nube-techo.jpg"
     },
     {
+      "fabricado": true,
+      "id": "baffle-colgante",
+      "nombre": "Baffle colgante",
+      "categoria": "techo",
+      "forma": "baffle",
+      "resumen": "Paneles verticales colgados del techo: bajan el ruido de restaurantes, gimnasios y oficinas abiertas sin ocupar paredes.",
+      "detalle": "Tela en las dos caras y kit de suspensión con cable de acero.",
+      "medidas": ["120 × 40 cm", "120 × 60 cm"],
+      "espesores": ["50 mm"],
+      "tela": true,
+      "imagen": "/productos/baffle-colgante.jpg"
+    },
+    {
+      "fabricado": true,
       "id": "trampa-graves",
       "nombre": "Trampa de graves de esquina",
       "categoria": "graves",
@@ -50,33 +183,23 @@
       "medidas": ["Cateto 50 cm · alto 60 cm", "Cateto 50 cm · alto 120 cm"],
       "espesores": [],
       "tela": true,
-      "fabricado": true
+      "imagen": "/productos/trampa-graves.jpg"
     },
     {
-      "id": "panel-hexagonal",
-      "nombre": "Panel hexagonal",
-      "categoria": "absorcion",
-      "forma": "hex",
-      "resumen": "Absorción con una composición más decorativa para paredes a la vista y en cámara.",
-      "detalle": "Se combinan colores de tela para armar patrones.",
-      "medidas": ["Lado 30 cm", "Lado 50 cm"],
-      "espesores": ["50 mm"],
-      "tela": true,
-      "fabricado": true
-    },
-    {
+      "fabricado": true,
       "id": "difusor",
       "nombre": "Difusor de madera",
       "categoria": "difusion",
       "forma": "difusor",
       "resumen": "Reparte las reflexiones en lugar de absorberlas: la sala no queda «muerta».",
-      "detalle": "Difusor de residuo cuadrático en madera natural.",
+      "detalle": "Difusor tipo skyline en pino: tacos de madera de distintas alturas.",
       "medidas": ["60 × 60 cm"],
       "espesores": [],
       "tela": false,
-      "fabricado": false
+      "imagen": "/productos/difusor.jpg"
     },
     {
+      "fabricado": true,
       "id": "panel-movil",
       "nombre": "Panel móvil con patas",
       "categoria": "moviles",
@@ -86,7 +209,72 @@
       "medidas": ["200 × 100 cm"],
       "espesores": ["100 mm"],
       "tela": true,
-      "fabricado": true
+      "imagen": "/productos/panel-movil.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "separador-escritorio",
+      "nombre": "Separador de escritorio",
+      "categoria": "moviles",
+      "forma": "rect",
+      "resumen": "Se fija al escritorio con prensas: menos ruido entre puestos y más privacidad en oficinas y coworkings.",
+      "detalle": "Tela en las dos caras y prensas metálicas incluidas.",
+      "medidas": ["120 × 50 cm", "140 × 50 cm"],
+      "espesores": ["30 mm"],
+      "tela": true,
+      "imagen": "/productos/separador-escritorio.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "kit-home-studio",
+      "nombre": "Kit Home Studio",
+      "categoria": "kits",
+      "forma": "rect",
+      "resumen": "Para mezclar y grabar en casa: paneles en los puntos de primera reflexión y trampas en las esquinas.",
+      "detalle": "6 paneles absorbentes de 120 × 60 cm × 100 mm y 4 trampas de graves de 60 cm (dos por esquina).",
+      "medidas": ["6 paneles + 4 trampas"],
+      "espesores": [],
+      "tela": true,
+      "imagen": "/productos/kit-home-studio.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "kit-streaming",
+      "nombre": "Kit Streaming",
+      "categoria": "kits",
+      "forma": "rect",
+      "resumen": "Pared de fondo tratada y una nube sobre el escritorio: voz limpia y un fondo que se ve bien en cámara.",
+      "detalle": "4 paneles absorbentes de 120 × 60 cm × 50 mm y 1 nube de techo de 120 × 60 cm.",
+      "medidas": ["4 paneles + 1 nube"],
+      "espesores": [],
+      "tela": true,
+      "imagen": "/productos/kit-streaming.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "kit-podcast",
+      "nombre": "Kit Podcast",
+      "categoria": "kits",
+      "forma": "rect",
+      "resumen": "Para sets de dos o más voces: menos rebote entre micrófonos y un fondo con diseño.",
+      "detalle": "4 paneles absorbentes de 120 × 60 cm × 50 mm y 1 pack de 6 hexagonales de lado 30 cm.",
+      "medidas": ["4 paneles + 6 hexagonales"],
+      "espesores": [],
+      "tela": true,
+      "imagen": "/productos/kit-podcast.jpg"
+    },
+    {
+      "fabricado": true,
+      "id": "kit-home-office",
+      "nombre": "Kit Home Office",
+      "categoria": "kits",
+      "forma": "rect",
+      "resumen": "Videollamadas sin eco con la opción más liviana.",
+      "detalle": "2 paneles Slim de 120 × 60 cm × 25 mm.",
+      "medidas": ["2 paneles Slim"],
+      "espesores": [],
+      "tela": true,
+      "imagen": "/productos/kit-home-office.jpg"
     }
   ],
   "servicios": [

@@ -1,31 +1,26 @@
+import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
+import aula from "@/assets/espacio-aula.jpg";
+import comercio from "@/assets/espacio-comercio.jpg";
+import estudio from "@/assets/espacio-estudio.jpg";
+import streaming from "@/assets/espacio-streaming.jpg";
 import { WA_DIRECT_URL } from "@/lib/whatsapp";
 import { cn } from "@/lib/cn";
 import { Section, SectionHead } from "@/components/ui/Section";
 
-function Icono({ children }: { children: ReactNode }) {
-  return (
-    <svg
-      viewBox="0 0 44 44"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      aria-hidden="true"
-      className="size-11 text-accent"
-    >
-      {children}
-    </svg>
-  );
-}
-
+// Las imágenes son renders ilustrativos, no obras de clientes.
 function Celda({
-  icono,
+  foto,
+  alt,
+  encuadre,
   titulo,
   texto,
   pie,
   consulta,
 }: {
-  icono: ReactNode;
+  foto: StaticImageData;
+  alt: string;
+  encuadre: string;
   titulo: string;
   texto: string;
   pie?: ReactNode;
@@ -33,15 +28,20 @@ function Celda({
 }) {
   return (
     <div
-      className={cn(
-        "flex min-w-0 flex-col gap-4 px-7 pt-9 pb-8 md:min-h-[300px]",
-        consulta ? "bg-surface" : "bg-bg",
-      )}
+      className={cn("flex min-w-0 flex-col", consulta ? "bg-surface" : "bg-bg")}
     >
-      {icono}
-      <h3>{titulo}</h3>
-      <p className="text-small text-muted">{texto}</p>
-      {pie}
+      <Image
+        src={foto}
+        alt={alt}
+        sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+        placeholder="blur"
+        className={cn("aspect-[4/3] w-full object-cover", encuadre)}
+      />
+      <div className="flex flex-1 flex-col gap-4 px-7 pt-7 pb-8">
+        <h3>{titulo}</h3>
+        <p className="text-small text-muted">{texto}</p>
+        {pie}
+      </div>
     </div>
   );
 }
@@ -58,44 +58,32 @@ export function Spaces() {
       />
       <div className="grid gap-px border border-line bg-line md:grid-cols-2 lg:grid-cols-4">
         <Celda
-          icono={
-            <Icono>
-              <rect x="6" y="10" width="32" height="20" rx="2" />
-              <path d="M16 36h12M22 30v6" />
-              <circle cx="22" cy="20" r="4" />
-            </Icono>
-          }
+          foto={streaming}
+          alt="Sala de streaming con paneles petróleo y arena detrás del escritorio, vista desde atrás de la cámara"
+          encuadre="object-[40%_50%]"
           titulo="Salas de streaming"
           texto="Voz clara y sin eco, sin ruido de la calle, y una sala que se ve bien en cámara. Para productoras y canales."
           pie={<span className={tagClass}>Nuestro foco</span>}
         />
         <Celda
-          icono={
-            <Icono>
-              <rect x="17" y="5" width="10" height="18" rx="5" />
-              <path d="M11 19a11 11 0 0 0 22 0M22 30v8M15 38h14" />
-            </Icono>
-          }
+          foto={estudio}
+          alt="Control room con paneles grafito detrás de los monitores, nube acústica en el techo y trampas de graves en las esquinas"
+          encuadre="object-[50%_50%]"
           titulo="Estudios de grabación"
           texto="Control rooms y salas de toma con una respuesta medida, para mezclar y grabar con confianza."
         />
         <Celda
-          icono={
-            <Icono>
-              <path d="M6 18 9 8h26l3 10M6 18h32v18H6zM6 18c0 3 3 5 5.5 5S16 21 16 18c0 3 3 5 6 5s6-2 6-5c0 3 2 5 4.5 5S38 21 38 18M18 36v-8h8v8" />
-            </Icono>
-          }
+          foto={comercio}
+          alt="Restaurante con paneles acústicos beige para reducir el ruido"
+          encuadre="object-[70%_50%]"
           titulo="Comercios y oficinas"
           texto="Restaurantes, locales y salas de reunión: menos ruido y conversaciones que se entienden."
         />
         <Celda
           consulta
-          icono={
-            <Icono>
-              <path d="M6 10h32v20H20l-8 7v-7H6z" />
-              <path d="M18 17a4 4 0 1 1 5 4v2M22 26v.5" />
-            </Icono>
-          }
+          foto={aula}
+          alt="Aula de música con paneles triangulares petróleo y beige, un atril y una guitarra"
+          encuadre="object-[50%_40%]"
           titulo="Consultá tu caso particular"
           texto="Sala de ensayo, home studio, aula, auditorio o un problema de ruido con el vecino."
           pie={

@@ -1,11 +1,14 @@
 import { cn } from "@/lib/cn";
 
-// Botones en píldora. El principal es grafito; "light" va sobre fotos y la banda oscura.
+// Botones en píldora. El principal es grafito; "light" va sobre fotos oscuras y la
+// banda oscura; "ink" va sobre fotos claras (fijo, no cambia con el tema).
 const variantes = {
   primary: "border-fg bg-fg text-bg",
   ghost: "border-fg bg-transparent text-fg",
   light: "border-white bg-white text-[#1d1f21]",
   "light-ghost": "border-white bg-transparent text-white",
+  ink: "border-[#1d1f21] bg-[#1d1f21] text-white",
+  "ink-ghost": "border-[#1d1f21] bg-transparent text-[#1d1f21]",
 } as const;
 
 export type ButtonVariant = keyof typeof variantes;

@@ -4,8 +4,8 @@ import { Section, SectionHead } from "@/components/ui/Section";
 
 const EJES = ["Rendimiento acústico", "Funcionalidad", "Estética"];
 
-// Textos del carrusel "Quiénes somos" de Instagram. La foto es provisoria
-// (recorte de la placa 03): reemplazar src/assets/nosotros.jpg por el original.
+// Textos del carrusel "Quiénes somos" de Instagram. La imagen es un render del
+// taller: reemplazar src/assets/nosotros.jpg por una foto real cuando la haya.
 export function About() {
   return (
     <Section id="nosotros">
@@ -17,7 +17,7 @@ export function About() {
       <div className="grid items-center gap-12 lg:grid-cols-2 [&>*]:min-w-0">
         <Image
           src={foto}
-          alt="Panel en fabricación: marco de pino relleno de lana de roca"
+          alt="Fabricación de paneles acústicos con bastidor de pino y lana de roca"
           sizes="(min-width: 981px) 528px, 100vw"
           placeholder="blur"
           className="aspect-[3/2] w-full rounded-card object-cover"
