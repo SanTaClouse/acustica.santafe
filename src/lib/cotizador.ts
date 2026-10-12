@@ -87,7 +87,9 @@ export function medidasTexto(d: Diseno): string {
 
 function ubicacionTexto(d: Diseno, cot: Cotizacion): string {
   if (d.ubicacion === "techo")
-    return cot.kitPendiente ? "Techo (kit a confirmar)" : "Techo";
+    return cot.kitPendiente
+      ? "Techo (kit a confirmar)"
+      : "Techo, con kit de suspensión";
   if (d.forma !== "rect") return "Pared";
   return d.alto > d.ancho ? "Pared, vertical" : "Pared, horizontal";
 }

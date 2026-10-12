@@ -355,8 +355,10 @@ export function DesignPanel({
                 {qty > 1
                   ? `${qty} paneles de ${formatARS(cot.porPanel)}. `
                   : ""}
-                {cot.kitPendiente
-                  ? "El kit de suspensión para techo se suma aparte: te lo confirmamos. "
+                {ubicacion === "techo"
+                  ? cot.kitPendiente
+                    ? "El kit de suspensión para techo se suma aparte: te lo confirmamos. "
+                    : "Incluye el kit de suspensión; te recomendamos que lo instale un profesional. "
                   : ""}
                 No incluye envío ni instalación. Te confirmamos el precio final
                 por WhatsApp.

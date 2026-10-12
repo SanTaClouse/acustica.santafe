@@ -69,6 +69,10 @@ describe("cotizador", () => {
       porPanel: 106400,
       kitPendiente: false,
     });
+    // Kit incluido (precio 0): no suma ni queda pendiente.
+    expect(
+      designItem(techo, { ...tarifas, kitTecho: 0 }, 1)?.detalle,
+    ).toContain("Techo, con kit de suspensión · $ 86.400");
   });
 
   it("arma el ítem de la consulta con el detalle y el precio estimado", () => {

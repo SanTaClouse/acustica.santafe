@@ -278,7 +278,7 @@
     }
   ],
   "cotizador": {
-    "_nota": "Tarifas del cotizador «Diseñá tu panel». Copia de la pestaña «Tarifas cotizador» del Sheet: si cambian allá, actualizarlas acá. kitTecho en null = se muestra «a confirmar». recargoTelaPedido es una fracción (0.1 = 10 %).",
+    "_nota": "Tarifas del cotizador «Diseñá tu panel». Copia de la pestaña «Tarifas cotizador» del Sheet: si cambian allá, actualizarlas acá. kitTecho: precio del kit de suspensión por panel (0 = incluido; null = «a confirmar»). recargoTelaPedido es una fracción (0.1 = 10 %).",
     "espesores": [
       {
         "nombre": "25 mm",
@@ -291,7 +291,7 @@
       },
       {
         "nombre": "100 mm",
-        "precioM2": 110000
+        "precioM2": 160000
       }
     ],
     "formas": [
@@ -311,7 +311,7 @@
         "recargo": 15000
       }
     ],
-    "kitTecho": null,
+    "kitTecho": 0,
     "recargoTelaPedido": 0,
     "medidaMin": 40,
     "medidaMax": 300
