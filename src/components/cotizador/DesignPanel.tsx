@@ -161,7 +161,10 @@ export function DesignPanel({
   const [forma, setForma] = useState<Forma>("rect");
   const [ancho, setAncho] = useState("120");
   const [alto, setAlto] = useState("60");
-  const [espesor, setEspesor] = useState(tarifas.espesores[0].nombre);
+  const [espesor, setEspesor] = useState(
+    (tarifas.espesores.find((e) => e.porDefecto) ?? tarifas.espesores[0])
+      .nombre,
+  );
   const [ubicacion, setUbicacion] = useState<Ubicacion>("pared");
   const [telaId, setTelaId] = useState(TELA_POR_DEFECTO);
   const [qty, setQty] = useState(1);

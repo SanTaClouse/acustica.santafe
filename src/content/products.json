@@ -281,8 +281,17 @@
     "_nota": "Tarifas del cotizador «Diseñá tu panel». Copia de la pestaña «Tarifas cotizador» del Sheet: si cambian allá, actualizarlas acá. kitTecho en null = se muestra «a confirmar». recargoTelaPedido es una fracción (0.1 = 10 %).",
     "espesores": [
       {
+        "nombre": "25 mm",
+        "precioM2": 50000
+      },
+      {
         "nombre": "50 mm",
-        "precioM2": 120000
+        "precioM2": 120000,
+        "porDefecto": true
+      },
+      {
+        "nombre": "100 mm",
+        "precioM2": 110000
       }
     ],
     "formas": [

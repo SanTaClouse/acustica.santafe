@@ -47,7 +47,15 @@ const precio = z.number().int().nonnegative();
 const cotizadorSchema = z
   .object({
     _nota: z.string().optional(),
-    espesores: z.array(z.object({ nombre: texto, precioM2: precio })).min(1),
+    espesores: z
+      .array(
+        z.object({
+          nombre: texto,
+          precioM2: precio,
+          porDefecto: z.boolean().optional(),
+        }),
+      )
+      .min(1),
     formas: z
       .array(
         z.object({
